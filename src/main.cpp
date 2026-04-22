@@ -68,9 +68,9 @@ public:
             if (cur->value == value) {
                 // unlink from per-key list
                 if (prev) prev->next = cur->next; else array[key] = cur->next;
-                // unlink from time list in O(1)
-                if (cur->timePre) cur->timePre->timeNext = cur->timeNext; else beg = cur->timeNext; // though cur->timePre should exist (beg or node)
-                if (cur->timeNext) cur->timeNext->timePre = cur->timePre; else current = cur->timePre ? cur->timePre : beg;
+                // unlink from time list in O(1); cur->timePre always exists (at least beg)
+                cur->timePre->timeNext = cur->timeNext;
+                if (cur->timeNext) cur->timeNext->timePre = cur->timePre; else current = cur->timePre;
                 delete cur;
                 return; // remove only first matched
             }
@@ -149,4 +149,3 @@ int main() {
     }
     return 0;
 }
-
