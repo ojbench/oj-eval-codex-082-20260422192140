@@ -135,11 +135,11 @@ int main() {
         } else if (cmd == "remove") {
             int k; string v; cin >> k >> v; mp.remove(k, v);
         } else if (cmd == "ask") {
-            int k; cin >> k; auto vec = mp.ask(k);
+            int k; cin >> k; vector<string> vec = mp.ask(k);
             for (size_t j = 0; j < vec.size(); ++j) { if (j) cout << ' '; cout << vec[j]; }
             cout << "\n";
         } else if (cmd == "foreach") {
-            auto all = mp.forEach();
+            vector<Data> all = mp.forEach();
             for (size_t j = 0; j < all.size(); ++j) { if (j) cout << ' '; cout << all[j].key << ':' << all[j].value; }
             cout << "\n";
         } else {
